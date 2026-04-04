@@ -1,0 +1,23 @@
+{
+  "name": "youcode-2026",
+  "version": "1.0.0",
+  "description": "Administration website to manage volunteers and their roles within a non-profit organization.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivpeng/youcode-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vivpeng/youcode-2026/issues"
+  },
+  "homepage": "https://github.com/vivpeng/youcode-2026#readme"
+}
