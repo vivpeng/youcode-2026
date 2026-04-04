@@ -206,7 +206,7 @@
       content: '';
       width: 14px; height: 14px;
       border-radius: 50%;
-      background: var(--green);
+      background: var(--faint);
       display: inline-block;
       flex-shrink: 0;
     }
@@ -371,6 +371,9 @@
 
     /* ── FEATURES ── */
     .features {
+      border-top: 1px solid rgba(176,129,125,0.15);
+      border-bottom: 1px solid rgba(176,129,125,0.15);
+      padding: 64px clamp(24px, 6vw, 80px);
       padding: 80px clamp(24px, 6vw, 80px);
       max-width: 1100px;
       margin: 0 auto;
@@ -442,46 +445,6 @@
       font-size: 14px;
       color: var(--muted);
       line-height: 1.6;
-    }
-
-    /* ── QUOTE ── */
-    .quote-band {
-      background: var(--teal-light);
-      border-top: 1px solid rgba(176,129,125,0.15);
-      border-bottom: 1px solid rgba(176,129,125,0.15);
-      padding: 64px clamp(24px, 6vw, 80px);
-    }
-
-    .quote-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .quote-mark {
-      font-family: 'DM Serif Display', serif;
-      font-size: 80px;
-      line-height: 0.5;
-      color: rgba(176,129,125,0.3);
-      display: block;
-      margin-bottom: 16px;
-    }
-
-    .quote-text {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .quote-author {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
     }
 
     /* ── CTA SECTION ── */
