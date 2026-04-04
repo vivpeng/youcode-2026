@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="topbar">
+    <div class="topbar-left">
+        <div class="logo-mark">
+        <svg viewBox="0 0 15 15"><path d="M7.5 2v5.5L10 10M2 7.5a5.5 5.5 0 1 0 11 0 5.5 5.5 0 0 0-11 0z"/></svg>
+        </div>
+        <span class="app-name">Volunteer Manager</span>
+    </div>
+    <div class="nav">
+        <button class="active" id="nav-board" onclick="setView('board')">Board</button>
+        <button id="nav-all" onclick="setView('all')">View all</button>
+    </div>
+    <div class="topbar-stats" id="topbar-stats"></div>
+    </div>
+
+    <div id="board-view" class="board"></div>
+    <div id="all-view" style="display:none;"></div>
+    <div id="modal-container"></div>
+
+    <script src="script.js"> </script>
+</body>
+</html>
