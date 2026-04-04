@@ -17,7 +17,7 @@
       </div>
       <span class="nav-name">Volunteer Manager</span>
     </a>
-    <a class="nav-cta" href="app.html">Open app →</a>
+    <a class="nav-cta" href="#cta-section">Sign up free →</a>
   </nav>
 
   <!-- ── HERO ── -->
@@ -31,7 +31,7 @@
         Tailored for non-profits, a simple way to manage your volunteers and positions — simply drag and drop.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="app.html">
+        <a class="btn-primary" href="#cta-section">
           <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
           Get started free
         </a>
@@ -169,13 +169,31 @@
   </section>
 
   <!-- ── CTA ── -->
-  <section class="cta-section">
+  <section id="cta-section" class="cta-section">
     <h2 class="section-title">Sign up for free</h2>
     <p class="section-body">Start adding positions and volunteers in under a minute.</p>
-    <a class="btn-primary" href="app.html" style="margin: 0 auto; display: inline-flex;">
-      <svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
-      Open Volunteer Manager
-    </a>
+    
+    <div class="signup-card">
+        <h3>Create your account</h3>
+        
+        <form class="signup-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Alex Kim" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="alexkim@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            
+            <a class="btn-primary" href="app.html">Sign up for free</a>
+        </form>
+    </div> 
   </section>
 
   <!-- ── FOOTER ── -->
