@@ -31,10 +31,10 @@
         Tailored for non-profits, a simple way to manage your volunteers and positions by simply dragging and dropping.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" href="#cta-section">
+        <a class="btn-primary" href="#cta-section">
           <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
           Get started free
-        </button>
+        </a>
         <a class="btn-ghost" href="#features">How it works ↓</a>
       </div>
       <p class="hero-trust">Sign up to save your data.</p>
@@ -189,7 +189,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="••••••••" required>
             </div>
-            <button class="btn-primary" id="signup-btn">Sign up for free</button>
+            <button type="button" class="btn-primary" id="signup-btn">Sign up for free</button>
         </form>
     </div>
 
@@ -233,9 +233,10 @@
     const { error } = await sb.auth.signUp({ email, password })
 
     if (error) {
-      alert(error.message)
+        showMessage(error.message)
     } else {
-      window.location.href = 'app.html'
+        showMessage('Account created!')
+        setTimeout(() => window.location.href = 'app.html', 1000)
     }
   })
   document.getElementById('login-btn').addEventListener('click', async () => {
@@ -245,11 +246,27 @@
     const { error } = await sb.auth.signInWithPassword({ email, password })
 
     if (error) {
-        alert(error.message)
+        showMessage(error.message)
     } else {
         window.location.href = 'app.html'
     }
 })
+
+function showMessage(msg) {
+  const el = document.createElement('div')
+  el.textContent = msg
+  el.style.cssText = `
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    background: #1C1B19;
+    color: #fff; font-size: 13px; font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    padding: 9px 18px; border-radius: 999px;
+    z-index: 999; white-space: nowrap;
+  `
+  document.body.appendChild(el)
+  setTimeout(() => el.remove(), 1500)
+}
 </script>
 
 </body>
