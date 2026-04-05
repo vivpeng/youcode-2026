@@ -2,8 +2,8 @@
     --bg: #F8EFEA;
     --surface: #ffffff;
     --surface-secondary: #f0efe9;
-    --border: rgba(0,0,0,0.1);
-    --border-med: rgba(0,0,0,0.18);
+    --border: rgba(0, 0, 0, 0.1);
+    --border-med: rgba(0, 0, 0, 0.18);
     --text: #1a1a18;
     --text-muted: #6b6b64;
     --text-faint: #9b9b92;
@@ -22,11 +22,15 @@
     --red-border: #F7C1C1;
     --radius: 10px;
     --radius-sm: 6px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: 'DM Sans', sans-serif;
@@ -67,7 +71,14 @@ body {
     justify-content: center;
 }
 
-.logo-mark svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+.logo-mark svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
 
 .app-name {
     font-size: 15px;
@@ -137,7 +148,9 @@ body {
     border-right: 1px solid var(--border);
 }
 
-.panel:last-child { border-right: none; }
+.panel:last-child {
+    border-right: none;
+}
 
 .panel-header {
     padding: 14px 18px 12px;
@@ -190,7 +203,9 @@ body {
     gap: 4px;
 }
 
-.btn-add:hover { background: var(--teal-border); }
+.btn-add:hover {
+    background: var(--teal-border);
+}
 
 /* ── SCROLL AREA ── */
 .scroll-area {
@@ -203,9 +218,18 @@ body {
     background: var(--bg);
 }
 
-.scroll-area::-webkit-scrollbar { width: 5px; }
-.scroll-area::-webkit-scrollbar-track { background: transparent; }
-.scroll-area::-webkit-scrollbar-thumb { background: var(--border-med); border-radius: 99px; }
+.scroll-area::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+    background: var(--border-med);
+    border-radius: 99px;
+}
 
 /* ── CARDS ── */
 .card {
@@ -268,8 +292,17 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
-.btn-icon:hover { background: var(--surface-secondary); color: var(--text-muted); border-color: var(--border-med); }
-.btn-icon.danger:hover { background: var(--red-light); color: var(--red); border-color: var(--red-border); }
+.btn-icon:hover {
+    background: var(--surface-secondary);
+    color: var(--text-muted);
+    border-color: var(--border-med);
+}
+
+.btn-icon.danger:hover {
+    background: var(--red-light);
+    color: var(--red);
+    border-color: var(--red-border);
+}
 
 .tags {
     display: flex;
@@ -288,10 +321,29 @@ body {
     color: var(--text-muted);
 }
 
-.tag.teal { background: var(--teal-light); color: var(--teal-dark); border-color: var(--teal-border); }
-.tag.blue { background: var(--blue-light); color: var(--blue); border-color: var(--blue-border); }
-.tag.amber { background: var(--amber-light); color: var(--amber); border-color: var(--amber-border); }
-.tag.red { background: var(--red-light); color: var(--red); border-color: var(--red-border); }
+.tag.teal {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    border-color: var(--teal-border);
+}
+
+.tag.blue {
+    background: var(--blue-light);
+    color: var(--blue);
+    border-color: var(--blue-border);
+}
+
+.tag.amber {
+    background: var(--amber-light);
+    color: var(--amber);
+    border-color: var(--amber-border);
+}
+
+.tag.red {
+    background: var(--red-light);
+    color: var(--red);
+    border-color: var(--red-border);
+}
 
 /* ── CAPACITY BAR ── */
 .capacity-row {
@@ -327,7 +379,9 @@ body {
     transition: width 0.3s ease;
 }
 
-.capacity-bar-fill.full { background: var(--amber); }
+.capacity-bar-fill.full {
+    background: var(--amber);
+}
 
 /* ── DROP ZONE ── */
 .drop-zone {
@@ -384,7 +438,24 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
-.assigned-chip button:hover { opacity: 1; }
+.assigned-chip button:hover {
+    opacity: 1;
+}
+
+/* Auto-assign button */
+.btn-auto {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--teal-border);
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.btn-auto:hover { background: var(--teal-light); }
 
 /* ── EMPTY STATE ── */
 .empty-state {
@@ -452,7 +523,7 @@ body {
 .modal-bg {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -472,8 +543,15 @@ body {
 }
 
 @keyframes modal-in {
-    from { opacity: 0; transform: translateY(8px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .modal h2 {
@@ -520,7 +598,10 @@ body {
     background: var(--surface);
 }
 
-.field textarea { resize: vertical; min-height: 70px; }
+.field textarea {
+    resize: vertical;
+    min-height: 70px;
+}
 
 .field-hint {
     font-size: 11px;
@@ -548,7 +629,9 @@ body {
     transition: all 0.15s;
 }
 
-.btn-cancel:hover { background: var(--surface-secondary); }
+.btn-cancel:hover {
+    background: var(--surface-secondary);
+}
 
 .btn-save {
     font-family: 'DM Sans', sans-serif;
@@ -563,7 +646,9 @@ body {
     transition: all 0.15s;
 }
 
-.btn-save:hover { background: var(--teal-dark); }
+.btn-save:hover {
+    background: var(--teal-dark);
+}
 
 .btn-danger {
     font-family: 'DM Sans', sans-serif;
@@ -579,7 +664,9 @@ body {
     transition: all 0.15s;
 }
 
-  .btn-danger:hover { background: var(--red-border); }
+.btn-danger:hover {
+    background: var(--red-border);
+}
 
 /* ── TOAST ── */
 .toast {
@@ -599,5 +686,24 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
-@keyframes toast-in  { from { opacity:0; transform: translateX(-50%) translateY(10px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
-@keyframes toast-out { from { opacity:1; } to { opacity:0; } }
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes toast-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

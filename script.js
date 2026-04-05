@@ -470,7 +470,7 @@ function openVolunteerModal(editId) {
         <h2>${isEdit ? 'Edit volunteer' : 'Add volunteer'}</h2>
         <div class="field">
           <label>Full name</label>
-          <input id="v-name" value="${isEdit ? escAttr(vol.name) : ''}" placeholder="e.g. Jordan Lee">
+          <input id="v-name" value="${isEdit ? escAttr(vol.name) : ''}" placeholder="e.g. Alex Kim">
         </div>
         <div class="field">
           <label>Availability</label>
