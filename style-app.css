@@ -115,6 +115,30 @@ body {
     box-shadow: var(--shadow);
 }
 
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Auto-assign button */
+.btn-auto {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--teal-border);
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.btn-auto:hover { 
+    background: var(--teal-border); 
+}
+
 .topbar-stats {
     display: flex;
     gap: 16px;
@@ -441,21 +465,6 @@ body {
 .assigned-chip button:hover {
     opacity: 1;
 }
-
-/* Auto-assign button */
-.btn-auto {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: 1px solid var(--teal-border);
-    background: var(--teal-light);
-    color: var(--teal-dark);
-    cursor: pointer;
-    transition: all 0.15s;
-}
-.btn-auto:hover { background: var(--teal-light); }
 
 /* ── EMPTY STATE ── */
 .empty-state {
