@@ -695,6 +695,23 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
+#position-search {
+  margin-left: 10px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-secondary);
+  width: 140px;
+  transition: all 0.15s;
+}
+
+#position-search:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: var(--surface);
+}
+
 @keyframes toast-in {
     from {
         opacity: 0;

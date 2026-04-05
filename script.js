@@ -92,6 +92,7 @@ function renderBoard() {
       <div class="panel-title">
         <h2>Positions</h2>
         <span class="count-badge">${state.positions.length}</span>
+        <input type="search" id="position-search" placeholder="Search a position..." oninput="handlePositionSearch(this.value)">
       </div>
       <button class="btn-add" onclick="openPositionModal()">+ Add position</button>
     </div>
@@ -535,6 +536,37 @@ function closeModal() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
+
+// position search functionality
+let positionSearchQuery = '';
+
+function handlePositionSearch(value) {
+  positionSearchQuery = value.toLowerCase();
+  filterPositions();
+}
+
+function filterPositions() {
+  const posScroll = document.getElementById('pos-scroll');
+  if (!posScroll) return;
+
+  posScroll.innerHTML = '';
+
+  const filtered = state.positions.filter(pos =>
+    pos.title.toLowerCase().includes(positionSearchQuery)
+  );
+
+  if (!filtered.length) {
+    posScroll.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">🔍</div>
+        No matching positions.
+      </div>
+    `;
+    return;
+  }
+
+  filtered.forEach(pos => renderPositionCard(pos, posScroll));
+}
 
 // ── HELPERS ────────────────────────────────────────────────────────────────
 
