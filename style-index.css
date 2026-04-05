@@ -563,7 +563,7 @@ nav {
 /* -- CTA SECTION SIGN UP CARD -- */
 
 .signup-card {
-    margin: 32px auto;
+    margin: 0px auto;
     padding: 28px;
     max-width: 420px;
     background: white;
@@ -613,6 +613,13 @@ nav {
     margin-top: 8px;
     width: 100%;
     justify-content: center;
+}
+
+/* -- GINGERBREADS -- */
+img {
+   width: 100%;
+   height: 100px;
+   object-fit: cover;
 }
 
 /* ── FOOTER ── */
