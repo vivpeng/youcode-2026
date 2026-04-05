@@ -4,21 +4,28 @@ const STORAGE_KEY = 'volunteer-manager-v1';
 
 const DEFAULT_STATE = {
   positions: [
-    { id:'p1', title:'Event Coordinator', capacity:2, time:'Saturdays 9am–1pm', skills:['Leadership','Communication'], assigned:[] },
-    { id:'p2', title:'Registration Desk', capacity:3, time:'Sunday 8am–12pm', skills:['Organization'], assigned:[] },
+    { id:'p1', title:'Event Coordinator', capacity:2, time:['Saturdays 9am-1pm'], skills:['Leadership','Communication'], assigned:[] },
+    { id:'p2', title:'Registration Desk', capacity:3, time:['Sunday 8am-12pm'], skills:['Organization'], assigned:[] },
     { id:'p3', title:'First Aid Station', capacity:1, time:'Flexible', skills:['CPR','Medical'], assigned:[] }
   ],
   volunteers: [
-    { id:'v1', name:'Alex Kim', availability:'Weekends', skills:['CPR','Medical'], contact:'alex@example.com' },
-    { id:'v2', name:'Jordan Lee', availability:'Saturdays', skills:['Leadership','Communication'], contact:'jordan@example.com' },
-    { id:'v3', name:'Sam Rivera', availability:'Flexible', skills:['Organization','Communication'], contact:'sam@example.com' }
+    { id:'v1', name:'Alex Kim', availability:['Weekends'], skills:['CPR','Medical'], contact:'alex@example.com' },
+    { id:'v2', name:'Jordan Lee', availability:['Saturdays'], skills:['Leadership','Communication'], contact:'jordan@example.com' },
+    { id:'v3', name:'Sam Rivera', availability:['Flexible'], skills:['Organization','Communication'], contact:'sam@example.com' }
   ]
 };
 
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_STATE));
+    const state = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_STATE));
+    // migrate availability from string to array
+    state.volunteers.forEach(v => {
+      if (typeof v.availability === 'string') {
+        v.availability = v.availability.split(',').map(s => s.trim()).filter(Boolean);
+      }
+    });
+    return state;
   } catch(e) {
     return JSON.parse(JSON.stringify(DEFAULT_STATE));
   }
@@ -151,7 +158,7 @@ function renderPositionCard(pos, container) {
       </div>
     </div>
     <div class="tags">
-      <span class="tag blue">⏰ ${escHtml(pos.time)}</span>
+      <span class="tag blue">⏰ ${Array.isArray(pos.time) ? pos.time.join(', ') : escHtml(pos.time)}</span>
       ${pos.skills.map(s => `<span class="tag">${escHtml(s)}</span>`).join('')}
     </div>
     <div class="capacity-row">
@@ -199,7 +206,7 @@ function renderVolunteerCard(vol, container) {
       </div>
     </div>
     <div class="tags">
-      <span class="tag teal">📅 ${escHtml(vol.availability)}</span>
+      <span class="tag teal">📅 ${escHtml(vol.availability.join(', '))}</span>
       ${vol.skills.map(s => `<span class="tag">${escHtml(s)}</span>`).join('')}
     </div>
     <div class="tags">
@@ -244,6 +251,56 @@ function unassign(posId, volId) {
     renderBoard();
     renderStats();
   }
+}
+
+function autoAssign() {
+  const unassigned = state.volunteers.filter(
+    v => !state.positions.some(p => p.assigned.includes(v.id))
+  );
+
+  if (!unassigned.length) {
+    showToast('No unassigned volunteers to place');
+    return;
+  }
+
+  function timeMatches(vol, pos) {
+    const posTime = pos.time.toLowerCase();
+    return vol.availability.some(a => {
+    const v = a.toLowerCase();
+    return v === 'flexible' || posTime === 'flexible' ||
+            v.includes(posTime) || posTime.includes(v);
+    });
+  }
+
+  function skillScore(vol, pos) {
+    const volSkills = vol.skills.map(s => s.toLowerCase());
+    return pos.skills.filter(s => volSkills.includes(s.toLowerCase())).length;
+  }
+
+  let placed = 0;
+
+  state.positions.forEach(pos => {
+    const slots = pos.capacity - pos.assigned.length;
+    if (slots <= 0) return;
+
+    const eligible = unassigned
+      .filter(v => !pos.assigned.includes(v.id))
+      .filter(v => timeMatches(v, pos))        // hard gate: time must match
+      .map(v => ({ vol: v, score: skillScore(v, pos) }))
+      .filter(({ score }) => score > 0)        // hard gate: at least one skill must match
+      .sort((a, b) => b.score - a.score);
+
+    eligible.slice(0, slots).forEach(({ vol }) => {
+      pos.assigned.push(vol.id);
+      unassigned.splice(unassigned.indexOf(vol), 1);
+      placed++;
+    });
+  });
+
+  saveState();
+  renderBoard();
+  renderStats();
+  showToast(placed ? `Auto-assigned ${placed} volunteer${placed !== 1 ? 's' : ''}` : 'No matches found');
 }
 
 function deletePosition(id) {
@@ -305,7 +362,7 @@ function renderAll() {
             : `<span class="tag">Unassigned</span>`}
         </div>
         <div class="tags">
-          <span class="tag teal">📅 ${escHtml(vol.availability)}</span>
+          <span class="tag teal">📅 ${escHtml(vol.availability.join(', '))}</span>
           ${vol.skills.map(s => `<span class="tag">${escHtml(s)}</span>`).join('')}
           <span class="tag amber">✉ ${escHtml(vol.contact)}</span>
         </div>
@@ -417,7 +474,8 @@ function openVolunteerModal(editId) {
         </div>
         <div class="field">
           <label>Availability</label>
-          <input id="v-avail" value="${isEdit ? escAttr(vol.availability) : ''}" placeholder="e.g. Weekends, Saturdays">
+          <input id="v-avail" value="${isEdit ? escAttr(vol.availability.join(', ')) : ''}" placeholder="e.g. Weekends, Saturdays">
+          <div class="field-hint">Separate multiple times with commas</div>
         </div>
         <div class="field">
           <label>Skills</label>
@@ -447,7 +505,7 @@ function saveVolunteer(editId) {
 
   const data = {
     name,
-    availability: document.getElementById('v-avail').value.trim() || 'Flexible',
+    availability: document.getElementById('v-avail').value.split(',').map(s => s.trim()).filter(Boolean),
     skills:  document.getElementById('v-skills').value.split(',').map(s => s.trim()).filter(Boolean),
     contact: document.getElementById('v-contact').value.trim() || '—'
   };
