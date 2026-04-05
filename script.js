@@ -584,6 +584,22 @@ function escAttr(str) {
     .replace(/'/g, '&#39;');
 }
 
+async function signOut() {
+  await sb.auth.signOut()
+  window.location.href = 'index.html'
+}
+
 // ── INIT ───────────────────────────────────────────────────────────────────
-renderBoard();
-renderStats();
+async function init() {
+  const { data: { user } } = await sb.auth.getUser()
+
+  if (!user) {
+    //window.location.href = 'index.html'
+    //return
+  }
+
+  renderBoard()
+  renderStats()
+}
+
+init()

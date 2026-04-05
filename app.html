@@ -6,6 +6,11 @@
     <title>Volunteer Manager</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style-app.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const { createClient } = supabase
+        const sb = createClient('https://gcfobgnqclchsahxbldz.supabase.co', 'sb_publishable_0H4AzBhIsskVy1GWRzSeHw_2zTakhWb')
+    </script>
 </head>
 <body>
     <div class="topbar">
@@ -22,6 +27,7 @@
         <div class="topbar-right">
             <button onclick="autoAssign()" class="btn-auto">✦ Auto-assign</button>
             <div class="topbar-stats" id="topbar-stats"></div>
+            <button class="btn-auto" onclick="signOut()">Sign out</button>
         </div>
     
     </div>
