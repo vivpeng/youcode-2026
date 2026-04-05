@@ -31,10 +31,10 @@
         Tailored for non-profits, a simple way to manage your volunteers and positions by simply dragging and dropping.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#cta-section">
+        <button class="btn-primary" href="#cta-section">
           <svg viewBox="0 0 16 16"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
           Get started free
-        </a>
+        </button>
         <a class="btn-ghost" href="#features">How it works ↓</a>
       </div>
       <p class="hero-trust">Sign up to save your data.</p>
@@ -224,7 +224,7 @@
 <!-- LOG IN LOGIC -->
   <script>
     const { createClient } = supabase
-    const sb = createClient('https://gcfobgnqclchsahxbldz.supabase.co', 'sb_publishable_0H4AzBhIsskVy1GWRzSeHw_2zTakhWb')
+    const sb = createClient('https://gcfobgnqclchsahxbldz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjZm9iZ25xY2xjaHNhaHhibGR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNTMyNzksImV4cCI6MjA5MDkyOTI3OX0.49n11tserSpLaLkHxfEbUkxcucj0y99L6V0QdsX2cBc')
 
   document.getElementById('signup-btn').addEventListener('click', async () => {
     const email    = document.getElementById('email').value
