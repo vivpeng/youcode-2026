@@ -264,12 +264,15 @@ function autoAssign() {
   }
 
   function timeMatches(vol, pos) {
-    const posTime = pos.time.toLowerCase();
+    // Convert array to string or keep as string, then lowercase
+    const posTime = (Array.isArray(pos.time) ? pos.time.join(' ') : pos.time).toLowerCase();
+  
     return vol.availability.some(a => {
     const v = a.toLowerCase();
-    return v === 'flexible' || posTime === 'flexible' ||
-            v.includes(posTime) || posTime.includes(v);
-    });
+    // Ensure 'a' exists and is a string before comparing
+    return v === 'flexible' || posTime.includes('flexible') ||
+           v.includes(posTime) || posTime.includes(v);
+  });
   }
 
   function skillScore(vol, pos) {
